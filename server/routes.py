@@ -7,19 +7,19 @@ from server.models import Book
 
 @flaskapp.route('/')
 def index():
-    name = request.args.get('name')
-    author = request.args.get('author')
+    sName = request.args.get('name')
+    sAuthor = request.args.get('author')
     read = bool(request.args.get('read'))
 
     if name:
         cursor.execute(
-           "SELECT * FROM books WHERE name LIKE %s", name
+            "SELECT * FROM books WHERE name LIKE %s", sName
         )
         books = [Book(*row) for row in cursor]
 
     elif author:
         cursor.execute(
-            "SELECT * FROM books WHERE author LIKE %s", author
+            "SELECT * FROM books WHERE author LIKE %s", sAuthor
         )
         books = [Book(*row) for row in cursor]
 
